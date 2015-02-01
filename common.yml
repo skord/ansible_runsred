@@ -1,0 +1,5 @@
+- name: Setup Common Roles
+  hosts: all
+  roles:
+    - role: ansible
+    - role: docker

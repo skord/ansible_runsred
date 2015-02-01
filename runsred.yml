@@ -1,0 +1,5 @@
+- name: Runsred Roles
+  hosts: runs.red
+  roles:
+    - role: docker_minecraft
+    - role: runsredweb

@@ -1,0 +1,32 @@
+- name: Remove system pip if present
+  apt:
+    name: python-pip
+    state: absent
+    update_cache: yes
+    cache_valid_time: 120
+
+- name: install ubuntu specific apt packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 120
+  with_items:
+    - 'python-pycurl'
+    - 'python-dev'
+    - 'python-apt'
+    - 'libyaml-dev'
+
+- name: Install pip
+  easy_install:
+    name: pip
+
+- name: pip install ansible and deps
+  pip:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - 'docker-py'
+    - 'pycrypto'
+    - 'ansible'
+    - 'dopy'
