@@ -1,0 +1,4 @@
+- name: Runsred Roles
+  hosts: minecraft-servers
+  roles:
+    - role: docker_minecraft

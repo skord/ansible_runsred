@@ -1,14 +1,11 @@
 - name: Pull latest runsred container
-  command: docker pull skord/runsred
+  command: docker pull skord/runsred:latest
 
 - name: Stop any existing runsred container
   docker:
-    image: skord/runsred
+    image: skord/runsred:latest
+    name: runsred
     state: absent
 
 - name: Start latest runsred container
-  docker:
-    image: skord/runsred
-    state: running
-    ports:
-      - '80:80'
+  command: docker run -d --name runsred -p 80:80 skord/runsred:latest
