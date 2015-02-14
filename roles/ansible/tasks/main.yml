@@ -16,6 +16,7 @@
     - 'python-dev'
     - 'python-apt'
     - 'libyaml-dev'
+    - 'python-setuptools'
 
 - name: Install pip
   easy_install:

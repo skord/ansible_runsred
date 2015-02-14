@@ -9,3 +9,15 @@
 
 - name: Start latest runsred container
   command: docker run -d --name runsred -p 80:80 skord/runsred:latest
+
+- name: Pull latest overviewer container
+  command: docker pull skord/overviewer:latest
+
+- name: Stop existing overviewer container
+  docker:
+    image: skord/overviewer:latest
+    name: overviewer
+    state: absent
+
+- name: Start overviewer container
+  command: docker run -p 18080:18080 --name overviewer -d --volumes-from minecraft overviewer

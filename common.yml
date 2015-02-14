@@ -3,3 +3,14 @@
   roles:
     - role: ansible
     - role: docker
+
+- name: Minecraft Servers
+  hosts: minecraft-servers
+  roles:
+    - role: docker_minecraft
+
+- name: Runsred Roles
+  hosts: runs.red
+  roles:
+    - role: runsredweb
+

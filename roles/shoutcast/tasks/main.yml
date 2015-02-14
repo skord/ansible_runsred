@@ -1,0 +1,36 @@
+- name: ensure config directory
+  file:
+    path: /opt/shoutcast
+    state: directory
+- name: copy config over
+  template:
+    backup: yes
+    src: shoutcast.conf
+    dest: /opt/shoutcast/shoutcast.conf
+
+- name: pull shoutcast container
+  command: docker pull luzifer/shoutcast
+
+- name: stop any existing shoutcast container
+  docker:
+    image: luzifer/shoutcast
+    name: sc
+    state: absent
+
+- name: start shoutcast container
+  docker:
+    image: luzifer/shoutcast
+    name: sc
+    state: running
+    ports:
+      - '8000:8000'
+      - '8001:8001'
+      - '8002:8002'
+    volumes:
+      - '/opt/shoutcast:/etc/shoutcast'
+    net: bridge
+    expose:
+      - '8000'
+      - '8001'
+      - '8002'
+

@@ -9,7 +9,9 @@
 - name: Start Minecraft Container
   docker:
     image: itzg/minecraft-server
-    env: EULA=TRUE
+    env: 
+      EULA: TRUE
+      OPS: beerczar
     name: minecraft
     ports:
       - '25565:25565'
